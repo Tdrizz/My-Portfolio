@@ -3,28 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Tittan Olson — Full-stack software engineer and web designer based on the Big Island, Hawaiʻi. Available for freelance work.">
-  <meta property="og:title" content="Tittan Olson — Software Engineer & Web Designer">
-  <meta property="og:description" content="Full-stack engineer building software products and web experiences from the Big Island of Hawaiʻi. Available for freelance.">
+  <meta name="description" content="Tittan Olson — Software engineer building clean, functional products.">
+  <meta property="og:title" content="Tittan Olson — Software Engineer">
+  <meta property="og:description" content="Software engineer building products and web experiences. Available for freelance.">
   <meta property="og:type" content="website">
   <title>Tittan Olson</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg:           #0c0c0b;
-      --surface:      #141311;
-      --surface-2:    #191714;
-      --text:         #ede8e0;
-      --muted:        #6b6560;
-      --accent:       #c9a55a;
-      --accent-dim:   rgba(201, 165, 90, 0.12);
-      --border:       rgba(237, 232, 224, 0.09);
-      --font-display: 'Syne', sans-serif;
-      --font-serif:   'Cormorant Garamond', serif;
+      --bg:      #0a0a0a;
+      --surface: #111111;
+      --text:    #e8e8e8;
+      --text-2:  #777;
+      --text-3:  #444;
+      --border:  rgba(255, 255, 255, 0.07);
+      --font:    'Inter', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -32,32 +29,10 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: var(--font-display);
+      font-family: var(--font);
       line-height: 1.6;
       overflow-x: hidden;
-    }
-
-    /* Film grain overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      opacity: 0.032;
-      pointer-events: none;
-      z-index: 999;
-    }
-
-    /* ── SCROLL PROGRESS ── */
-    #progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 2px;
-      width: 0%;
-      background: var(--accent);
-      z-index: 400;
-      transition: width 0.08s linear;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* ── NAV ── */
@@ -65,128 +40,83 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 200;
-      padding: 1.6rem 2.5rem;
+      padding: 1.5rem 2.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
       border-bottom: 1px solid transparent;
+      transition: background 0.3s, border-color 0.3s;
     }
 
     nav.scrolled {
-      background: rgba(12, 12, 11, 0.88);
-      backdrop-filter: blur(14px);
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(12px);
       border-bottom-color: var(--border);
     }
 
     .nav-logo {
-      font-weight: 800;
-      font-size: 0.85rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
       color: var(--text);
       text-decoration: none;
     }
 
     .nav-links {
       display: flex;
-      gap: 2.5rem;
+      gap: 2rem;
       list-style: none;
     }
 
     .nav-links a {
-      color: var(--muted);
+      color: var(--text-2);
       text-decoration: none;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      transition: color 0.2s;
+      font-size: 0.8rem;
+      font-weight: 400;
+      transition: color 0.15s;
     }
 
     .nav-links a:hover { color: var(--text); }
 
     /* ── HERO ── */
     .hero {
-      min-height: 100vh;
+      padding: 9rem 2.5rem 5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-intro {
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 2.5rem 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Warm glow behind hero text */
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -10%;
-      left: -5%;
-      width: 65%;
-      height: 70%;
-      background: radial-gradient(ellipse at center, rgba(201, 165, 90, 0.065) 0%, transparent 65%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .hero > * { position: relative; z-index: 1; }
-
-    .hero-badge {
-      display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      background: rgba(201, 165, 90, 0.08);
-      border: 1px solid rgba(201, 165, 90, 0.22);
-      color: var(--accent);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 0.45rem 1rem;
+      gap: 1.5rem;
       margin-bottom: 2.5rem;
-      width: fit-content;
-      animation: fadeUp 0.9s ease 0.15s both;
+      animation: fadeUp 0.6s ease both;
     }
 
-    .hero-badge .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: pulse 2.2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.35; transform: scale(0.7); }
+    .hero-role {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-2);
     }
 
     .hero-name {
-      font-weight: 800;
-      font-size: clamp(4rem, 11vw, 10rem);
-      line-height: 0.9;
-      letter-spacing: -0.025em;
-      text-transform: uppercase;
-      margin-bottom: 2.2rem;
-      animation: fadeUp 1s ease 0.3s both;
+      font-size: clamp(3rem, 7.5vw, 7rem);
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s ease 0.1s both;
+      color: var(--text);
     }
 
-    .hero-name .serif-line {
-      display: block;
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-weight: 300;
-      color: var(--accent);
-      font-size: 0.82em;
-      letter-spacing: -0.01em;
+    .hero-name .last {
+      color: var(--text-2);
     }
 
     .hero-rule {
       border: none;
       border-top: 1px solid var(--border);
       margin-bottom: 1.8rem;
-      animation: fadeUp 0.8s ease 0.5s both;
+      animation: fadeUp 0.6s ease 0.2s both;
     }
 
     .hero-bottom {
@@ -194,193 +124,120 @@
       justify-content: space-between;
       align-items: flex-end;
       gap: 2rem;
-      animation: fadeUp 0.8s ease 0.6s both;
+      animation: fadeUp 0.6s ease 0.25s both;
     }
 
     .hero-descriptor {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: clamp(1.05rem, 2.2vw, 1.45rem);
-      color: var(--muted);
-      font-weight: 300;
-      max-width: 500px;
-      line-height: 1.6;
-    }
-
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 1.4rem;
-      flex-shrink: 0;
+      font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+      font-weight: 400;
+      color: var(--text-2);
+      max-width: 420px;
+      line-height: 1.65;
     }
 
     .hero-meta {
       text-align: right;
+      flex-shrink: 0;
     }
 
     .hero-meta p {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-      color: var(--muted);
-      line-height: 2;
-    }
-
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      text-decoration: none;
-      border: 1px solid rgba(201, 165, 90, 0.25);
-      padding: 0.6rem 1.1rem;
-      transition: background 0.25s, border-color 0.25s, color 0.25s;
-    }
-
-    .hero-cta:hover {
-      background: var(--accent-dim);
-      border-color: rgba(201, 165, 90, 0.5);
-      color: var(--text);
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-3);
+      line-height: 1.9;
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
     /* ── SHARED ── */
-    section { padding: 7rem 2.5rem; border-top: 1px solid var(--border); }
+    section { padding: 6rem 2.5rem; border-top: 1px solid var(--border); }
 
     .section-label {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 3.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .section-label::after {
-      content: '';
-      width: 32px;
-      height: 1px;
-      background: var(--accent);
-      opacity: 0.45;
+      color: var(--text-3);
+      margin-bottom: 3rem;
     }
 
     /* ── WORK ── */
     .work-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      border: 1px solid var(--border);
       gap: 1px;
       background: var(--border);
+      border: 1px solid var(--border);
     }
 
     .work-card {
       background: var(--bg);
-      padding: 3rem 2.5rem 2.5rem;
+      padding: 2.5rem;
       position: relative;
-      overflow: hidden;
-      transition: background 0.35s;
       text-decoration: none;
       color: inherit;
       display: block;
-    }
-
-    .work-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--accent);
-      opacity: 0;
-      transition: opacity 0.35s;
+      transition: background 0.2s;
     }
 
     .work-card:hover { background: var(--surface); }
-    .work-card:hover::before { opacity: 0.6; }
 
     .work-card.featured {
       grid-column: 1 / -1;
-      padding: 3.5rem 3rem 3rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
       align-items: start;
     }
 
-    .work-card.featured::before { opacity: 0.35; }
-    .work-card.featured:hover::before { opacity: 1; }
-
-    .featured-left { }
-    .featured-right { padding-top: 0.5rem; }
-
-    .featured-right .card-desc {
-      font-size: 1.08rem;
-      color: rgba(237, 232, 224, 0.55);
-    }
-
     .work-card .arrow {
       position: absolute;
-      top: 2.2rem;
-      right: 2.2rem;
-      font-size: 1.1rem;
-      color: var(--muted);
-      transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), color 0.25s;
-      display: inline-block;
+      top: 2rem;
+      right: 2rem;
+      font-size: 0.9rem;
+      color: var(--text-3);
+      transition: transform 0.2s, color 0.2s;
     }
 
     .work-card:hover .arrow {
-      transform: translate(4px, -4px);
-      color: var(--accent);
+      transform: translate(3px, -3px);
+      color: var(--text-2);
     }
 
     .card-num {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.8rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-3);
+      margin-bottom: 1.5rem;
     }
 
     .card-name {
-      font-family: var(--font-serif);
-      font-size: clamp(1.7rem, 3vw, 2.4rem);
-      font-weight: 400;
-      line-height: 1.05;
-      margin-bottom: 0.6rem;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+      color: var(--text);
     }
 
     .work-card.featured .card-name {
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
     }
 
     .card-role {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.6rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-2);
+      margin-bottom: 1.5rem;
     }
 
     .card-desc {
-      font-family: var(--font-serif);
-      font-size: 1.02rem;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--muted);
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--text-2);
       line-height: 1.75;
       margin-bottom: 2rem;
     }
@@ -388,23 +245,16 @@
     .card-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.45rem;
+      gap: 0.35rem;
     }
 
     .tag {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--text-3);
       border: 1px solid var(--border);
-      padding: 0.28rem 0.65rem;
-      transition: color 0.2s, border-color 0.2s;
-    }
-
-    .work-card:hover .tag {
-      color: rgba(237, 232, 224, 0.6);
-      border-color: rgba(237, 232, 224, 0.15);
+      padding: 0.2rem 0.55rem;
+      border-radius: 2px;
     }
 
     /* ── ABOUT ── */
@@ -416,17 +266,14 @@
     }
 
     .about-text p {
-      font-family: var(--font-serif);
-      font-size: 1.12rem;
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.9;
-      color: rgba(237, 232, 224, 0.7);
-      margin-bottom: 1.4rem;
+      font-size: 0.925rem;
+      font-weight: 400;
+      line-height: 1.85;
+      color: var(--text-2);
+      margin-bottom: 1.25rem;
     }
 
     .about-text p strong {
-      font-style: normal;
       font-weight: 500;
       color: var(--text);
     }
@@ -434,173 +281,152 @@
     .skills-block { margin-top: 2.5rem; }
 
     .skills-label {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1rem;
+      color: var(--text-3);
+      margin-bottom: 0.9rem;
     }
 
     .chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.45rem;
+      gap: 0.4rem;
     }
 
     .chip {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-2);
       background: var(--surface);
       border: 1px solid var(--border);
-      padding: 0.38rem 0.85rem;
-      transition: background 0.2s, border-color 0.2s;
+      padding: 0.3rem 0.7rem;
+      border-radius: 2px;
     }
 
-    .chip:hover {
-      background: var(--surface-2);
-      border-color: rgba(237, 232, 224, 0.15);
-    }
-
-    .detail-rows { padding-top: 1rem; }
+    .detail-rows { padding-top: 0.5rem; }
 
     .detail-row {
       border-top: 1px solid var(--border);
-      padding: 1.4rem 0;
+      padding: 1.25rem 0;
     }
 
     .detail-row:last-child { border-bottom: 1px solid var(--border); }
 
     .detail-key {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.45rem;
+      color: var(--text-3);
+      margin-bottom: 0.35rem;
     }
 
     .detail-val {
-      font-family: var(--font-serif);
-      font-size: 1.05rem;
+      font-size: 0.875rem;
       font-weight: 400;
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     /* ── CONTACT ── */
     #contact {
       text-align: center;
-      padding: 9rem 2.5rem;
+      padding: 8rem 2.5rem;
     }
-
-    #contact .section-label {
-      justify-content: center;
-    }
-
-    #contact .section-label::after { display: none; }
 
     .contact-headline {
-      font-family: var(--font-serif);
-      font-size: clamp(2.8rem, 8vw, 6rem);
-      font-weight: 300;
-      line-height: 1.08;
-      margin: 1.5rem auto 3.5rem;
-      max-width: 800px;
+      font-size: clamp(2rem, 6vw, 4.5rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin: 1rem auto 2.5rem;
+      max-width: 700px;
+      color: var(--text);
     }
 
-    .contact-headline em {
-      font-style: italic;
-      color: var(--muted);
+    .contact-headline span {
+      color: var(--text-2);
+      font-weight: 300;
     }
 
     .contact-email-link {
       display: inline-block;
-      font-weight: 700;
-      font-size: clamp(0.95rem, 2.5vw, 1.4rem);
-      letter-spacing: 0.04em;
+      font-size: 0.875rem;
+      font-weight: 500;
       color: var(--text);
       text-decoration: none;
-      border-bottom: 1px solid var(--accent);
-      padding-bottom: 0.25rem;
-      transition: color 0.22s;
+      border-bottom: 1px solid var(--text-3);
+      padding-bottom: 0.2rem;
+      transition: border-color 0.15s;
     }
 
-    .contact-email-link:hover { color: var(--accent); }
+    .contact-email-link:hover { border-color: var(--text); }
 
     .contact-socials {
       display: flex;
       justify-content: center;
-      gap: 2.5rem;
-      margin-top: 3rem;
+      gap: 2rem;
+      margin-top: 2.5rem;
     }
 
     .contact-socials a {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-3);
       text-decoration: none;
-      transition: color 0.2s;
+      transition: color 0.15s;
     }
 
-    .contact-socials a:hover { color: var(--text); }
+    .contact-socials a:hover { color: var(--text-2); }
 
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
-      padding: 2rem 2.5rem;
+      padding: 1.75rem 2.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     footer p {
-      font-size: 0.63rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--text-3);
     }
 
     /* ── SCROLL REVEAL ── */
     .reveal {
       opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.75s ease, transform 0.75s ease;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
     .reveal.visible { opacity: 1; transform: none; }
-    .reveal.d1 { transition-delay: 0.10s; }
-    .reveal.d2 { transition-delay: 0.22s; }
-    .reveal.d3 { transition-delay: 0.34s; }
+    .reveal.d1 { transition-delay: 0.08s; }
+    .reveal.d2 { transition-delay: 0.16s; }
+    .reveal.d3 { transition-delay: 0.24s; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 1.2rem 1.5rem; }
       .nav-links { display: none; }
-      .hero { padding: 0 1.5rem 4rem; }
+      .hero { padding: 7rem 1.5rem 4rem; }
       .hero-bottom { flex-direction: column; align-items: flex-start; }
-      .hero-right { align-items: flex-start; }
       .hero-meta { text-align: left; }
-      section { padding: 5rem 1.5rem; }
+      section { padding: 4rem 1.5rem; }
       .work-grid { grid-template-columns: 1fr; }
       .work-card.featured { grid-template-columns: 1fr; gap: 1.5rem; }
       #about { grid-template-columns: 1fr; gap: 3rem; }
-      footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-  <div id="progress"></div>
-
   <nav id="nav">
-    <a href="#" class="nav-logo">T · O</a>
+    <a href="#" class="nav-logo">Tittan Olson</a>
     <ul class="nav-links">
       <li><a href="#work">Work</a></li>
       <li><a href="#about">About</a></li>
@@ -609,24 +435,18 @@
   </nav>
 
   <section class="hero" id="home">
-    <div class="hero-badge">
-      <span class="dot"></span>
-      Available for Freelance
+    <div class="hero-intro">
+      <span class="hero-role">Software Engineer</span>
     </div>
     <h1 class="hero-name">
-      Tittan
-      <span class="serif-line">Olson</span>
+      Tittan <span class="last">Olson</span>
     </h1>
     <hr class="hero-rule">
     <div class="hero-bottom">
-      <p class="hero-descriptor">Engineer by discipline, designer by instinct. I build software products and ship client sites from the Big Island.</p>
-      <div class="hero-right">
-        <div class="hero-meta">
-          <p>Big Island, Hawaiʻi</p>
-          <p>Web Design · Development</p>
-          <p>Security · SEO</p>
-        </div>
-        <a href="#work" class="hero-cta">View Work ↓</a>
+      <p class="hero-descriptor">I build clean, functional products — client sites, SaaS tools, and everything in between.</p>
+      <div class="hero-meta">
+        <p>Web Design · Development</p>
+        <p>Security · SEO</p>
       </div>
     </div>
   </section>
@@ -639,7 +459,7 @@
         <span class="arrow">↗</span>
         <div class="featured-left">
           <div class="card-num">01</div>
-          <h3 class="card-name">unifdata</h3>
+          <h3 class="card-name">Unifdata</h3>
           <div class="card-role">Co-Founder</div>
           <div class="card-tags">
             <span class="tag">Startup</span>
@@ -650,21 +470,19 @@
         </div>
         <div class="featured-right">
           <p class="card-desc">Built a data analytics platform with a co-founder — from concept to working product. Led product design, technical architecture, and early positioning. Covered everything from UI/UX to backend infrastructure.</p>
-
         </div>
       </a>
 
       <div class="work-card">
         <span class="arrow">↗</span>
         <div class="card-num">02</div>
-        <h3 class="card-name">Freelance<br>Web Design</h3>
+        <h3 class="card-name">Freelance Web Design</h3>
         <div class="card-role">Independent · Designer & Developer</div>
-        <p class="card-desc">Custom websites for local Hawaiʻi businesses, built from first conversation to launch day. I handle the build, the hosting, the contact forms, and the SEO basics. Clients get a finished product — not a project.</p>
+        <p class="card-desc">Custom websites for local Hawaiʻi businesses, built from first conversation to launch day. I handle the build, the hosting, the contact forms, and the SEO basics.</p>
         <div class="card-tags">
           <span class="tag">Web Design</span>
           <span class="tag">HTML / CSS / JS</span>
           <span class="tag">SEO</span>
-          <span class="tag">Hawaiʻi</span>
           <span class="tag">Launch Support</span>
         </div>
       </div>
@@ -676,8 +494,8 @@
     <div class="about-left">
       <div class="section-label reveal">About</div>
       <div class="about-text reveal d1">
-        <p>I'm a software engineer and web designer based on the Big Island of Hawaiʻi. I work at the intersection of design and engineering — shipping <strong>SaaS products</strong>, building <strong>local business sites</strong>, and making things that hold up under real use.</p>
-        <p>My background covers <strong>full-stack development</strong>, <strong>security hardening</strong>, <strong>SEO fundamentals</strong>, and <strong>AI data work</strong>. I've launched a SaaS startup, designed and deployed client sites, and built production systems with Next.js, Supabase, and TypeScript. I care about craft — and I ship.</p>
+        <p>I'm a software engineer working at the intersection of design and engineering — shipping <strong>SaaS products</strong>, building <strong>client sites</strong>, and making things that hold up under real use.</p>
+        <p>My background covers <strong>full-stack development</strong>, <strong>security hardening</strong>, <strong>SEO</strong>, and <strong>AI data work</strong>. I've launched a SaaS startup, designed and deployed client sites, and built production systems with Next.js, Supabase, and TypeScript.</p>
         <div class="skills-block">
           <div class="skills-label">Skills & Tools</div>
           <div class="chips">
@@ -707,10 +525,6 @@
           <div class="detail-val">B.S. Software Engineering<br>Western Governors University · In Progress</div>
         </div>
         <div class="detail-row">
-          <div class="detail-key">Location</div>
-          <div class="detail-val">Big Island, Hawaiʻi</div>
-        </div>
-        <div class="detail-row">
           <div class="detail-key">Status</div>
           <div class="detail-val">Open to freelance & contract work</div>
         </div>
@@ -725,7 +539,7 @@
   <section id="contact">
     <div class="section-label reveal">Get in Touch</div>
     <h2 class="contact-headline reveal d1">
-      Have something<br><em>worth building?</em>
+      Have something<br><span>worth building?</span>
     </h2>
     <a href="mailto:tittanolson@gmail.com" class="contact-email-link reveal d2">tittanolson@gmail.com</a>
     <div class="contact-socials reveal d3">
@@ -736,17 +550,13 @@
 
   <footer>
     <p>© 2026 Tittan Olson</p>
-    <p>Big Island, Hawaiʻi · Open to Freelance</p>
+    <p>Open to Freelance & Contract Work</p>
   </footer>
 
   <script>
     const nav = document.getElementById('nav');
-    const progress = document.getElementById('progress');
-
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
-      const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-      progress.style.width = (scrolled * 100) + '%';
     }, { passive: true });
 
     const reveals = document.querySelectorAll('.reveal');
